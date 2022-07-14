@@ -22,7 +22,8 @@
     "no-param-reassign": 0,
     "import/no-unresolved": "off",
     "react/prop-types": 0,
-    "no-shadow": "off"
+    "no-shadow": "off",
+    "quotes": "off"
   },
   "ignorePatterns": ["dist/", "build/", "tests/"]
 }
