@@ -1,3 +1,6 @@
+import { useGetAppointmentsQuery } from '../../services/api';
+
 export default function AppointmentsIndex() {
-  return <div>HI HELLO</div>;
+  const appointments = useGetAppointmentsQuery();
+  return <div>{Object.keys(appointments)}</div>;
 }

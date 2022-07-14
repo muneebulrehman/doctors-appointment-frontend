@@ -1,3 +1,10 @@
+import { useParams } from 'react-router-dom';
+
+import { useGetAppointmentQuery } from '../../services/api';
+
 export default function AppointmentShow() {
-  return <div>SHOW</div>;
+  const { appointmentId } = useParams();
+  const appointment = useGetAppointmentQuery(appointmentId);
+
+  return <div>{Object.keys(appointment)}</div>;
 }
