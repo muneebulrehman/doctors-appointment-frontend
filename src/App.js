@@ -9,8 +9,7 @@ import NavBar from './features/layout/Navbar';
 function App() {
   return (
     <BrowserRouter>
-      <div className="App d-flex">
-        <h1>React app</h1>
+      <div className="App d-flex bg-primary min-vh-100">
         <NavBar />
         <Routes>
           <Route path="/" element={<DoctorView />} />

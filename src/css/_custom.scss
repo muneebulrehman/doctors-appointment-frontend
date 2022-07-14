@@ -1,6 +1,8 @@
 $white: white;
 $info: rgb(53, 178, 178);
 $secondary: rgb(223, 43, 11);
+$primary: #97bf0f;
+$light: #efefef;
 
 // HERE FOR DOCUMENTATION
 /* make the customizations */
@@ -16,7 +18,7 @@ $secondary: rgb(223, 43, 11);
 // );
 
 $custom-colors: (
-  'custom-color': #900,
+  'gri': #900,
 );
 
 // $theme-colors: map-merge($theme-colors, $custom-colors);
