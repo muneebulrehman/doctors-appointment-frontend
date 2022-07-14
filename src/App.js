@@ -1,9 +1,9 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
-import DoctorView from "./features/doctor/DoctorView";
-import AppointmentShow from "./features/appointment/AppointmentShow";
-import AppointmentsIndex from "./features/appointment/AppointmentsIndex";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css';
+import DoctorView from './features/doctor/DoctorView';
+import AppointmentShow from './features/appointment/AppointmentShow';
+import AppointmentsIndex from './features/appointment/AppointmentsIndex';
 
 function App() {
   return (

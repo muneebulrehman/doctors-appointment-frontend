@@ -1,22 +1,22 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
   doctors: [],
   doctor: {},
   loading: false,
-  error: ""
+  error: ''
 };
 
-export const fetchDoctors = createAsyncThunk("user/fetchDoctors", async () => {
+export const fetchDoctors = createAsyncThunk('user/fetchDoctors', async () => {
   const response = await fetch(
-    "https://doctors-appointment-backend.herokuapp.com/api/doctors"
+    'https://doctors-appointment-backend.herokuapp.com/api/doctors'
   );
   const doctors = await response.json();
   return doctors;
 });
 
 export const fetchSingleDoctor = createAsyncThunk(
-  "user/fetchSingleDoctor",
+  'user/fetchSingleDoctor',
   async (id) => {
     const response = await fetch(
       `https://doctors-appointment-backend.herokuapp.com/api/doctors/${id}`
@@ -27,7 +27,7 @@ export const fetchSingleDoctor = createAsyncThunk(
 );
 
 const doctorSlice = createSlice({
-  name: "doctor",
+  name: 'doctor',
   initialState,
   extraReducers: (builder) => {
     builder.addCase(fetchDoctors.pending, (state) => {
@@ -36,7 +36,7 @@ const doctorSlice = createSlice({
     builder.addCase(fetchDoctors.fulfilled, (state, action) => {
       state.doctors = action.payload;
       state.loading = false;
-      state.error = "";
+      state.error = '';
     });
     builder.addCase(fetchDoctors.rejected, (state, action) => {
       state.error = action.error.message;
@@ -49,7 +49,7 @@ const doctorSlice = createSlice({
     builder.addCase(fetchSingleDoctor.fulfilled, (state, action) => {
       state.doctor = action.payload;
       state.loading = false;
-      state.error = "";
+      state.error = '';
     });
     builder.addCase(fetchSingleDoctor.rejected, (state, action) => {
       state.error = action.error.message;
