@@ -20,3 +20,38 @@ export const fetchSingleDoctor = createAsyncThunk('user/fetchSingleDoctor', asyn
   const doctor = await response.json();
   return doctor;
 });
+
+const doctorSlice = creatSlice({
+  name: 'doctor',
+  initialState,
+  extraReducers: (builder) => {
+    builder.addcase(fetchUsers.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addcase(fetchUsers.fulfilled, (state, action) => {
+      state.doctors = [...action.payload];
+      state.loading = false;
+      state.error = '';
+    });
+    builder.addcase(fetchUsers.rejected, (state, action) => {
+      state.error = action.error.message;
+      state.loading = false;
+      state.doctors = [];
+    });
+    builder.addcase(fetchSingleDoctor.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addcase(fetchSingleDoctor.fulfilled, (state, action) => {
+      state.doctor = action.payload;
+      state.loading = false;
+      state.error = '';
+    });
+    builder.addcase(fetchSingleDoctor.rejected, (state, action) => {
+      state.error = action.error.message;
+      state.loading = false;
+      state.doctor = {};
+    });
+  }
+});
+
+export default doctorSlice.reducer;
