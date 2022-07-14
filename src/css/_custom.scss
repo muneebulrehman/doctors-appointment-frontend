@@ -1,0 +1,22 @@
+$white: white;
+$info: rgb(53, 178, 178);
+$secondary: rgb(223, 43, 11);
+
+// HERE FOR DOCUMENTATION
+/* make the customizations */
+// $theme-colors: (
+// "primary":    yellow,
+// "secondary":  tomato,
+// "success":    $success,
+// "info":       teal,
+// "warning":    $warning,
+// "danger":     $danger,
+// "light":      $light,
+// "dark":       $dark
+// );
+
+$custom-colors: (
+  'custom-color': #900,
+);
+
+// $theme-colors: map-merge($theme-colors, $custom-colors);
