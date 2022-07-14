@@ -1,3 +1,3 @@
 export default function AppointmentsIndex() {
-  return <div>HI</div>;
+  return <div>HI HELLO</div>;
 }

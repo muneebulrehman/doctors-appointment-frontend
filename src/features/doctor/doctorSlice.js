@@ -4,7 +4,7 @@ const initialState = {
   doctors: [],
   doctor: {},
   loading: false,
-  error: ''
+  error: '',
 };
 
 export const fetchDoctors = createAsyncThunk('user/fetchDoctors', async () => {
@@ -56,7 +56,7 @@ const doctorSlice = createSlice({
       state.loading = false;
       state.doctor = {};
     });
-  }
+  },
 });
 
 export default doctorSlice.reducer;

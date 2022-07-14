@@ -11,11 +11,12 @@ function App() {
       <div className="App">
         <h1>React app</h1>
         <Routes>
-          <Route path="/" element={<DoctorView />}>
-            <Route path="appointments" element={<AppointmentsIndex />}>
-              <Route path=":appointmentId" element={<AppointmentShow />} />
-            </Route>
-          </Route>
+          <Route path="/" element={<DoctorView />} />
+          <Route path="/appointments" element={<AppointmentsIndex />} />
+          <Route
+            path="/appointments/:appointmentId"
+            element={<AppointmentShow />}
+          />
         </Routes>
       </div>
     </BrowserRouter>
