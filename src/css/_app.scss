@@ -3,6 +3,11 @@
   --doctors-secondary: #{$light};
 }
 
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
 .h-2rem {
   height: 2rem;
 }

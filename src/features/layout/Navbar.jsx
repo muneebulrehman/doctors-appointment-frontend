@@ -1,5 +1,9 @@
+import { useEffect } from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { NavLink } from 'react-router-dom';
 
 import { toggleNavMenu } from './layoutSlice';
 import styles from './Navbar.module.scss';
@@ -8,8 +12,21 @@ export default function NavBar() {
   const { navMenuIsOpen } = useSelector((state) => state.layout);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    function navMenuClickHandler(e) {
+      const navEl = document.querySelector('nav');
+      if (navMenuIsOpen && !navEl.contains(e.target)) {
+        dispatch(toggleNavMenu());
+      }
+    }
+    document.addEventListener('click', navMenuClickHandler);
+    return () => {
+      document.removeEventListener('click', navMenuClickHandler);
+    };
+  }, [navMenuIsOpen]);
+
   return (
-    <>
+    <nav>
       <label
         id="menu-burger"
         htmlFor="menu-burger-button"
@@ -27,7 +44,7 @@ export default function NavBar() {
         onClick={() => dispatch(toggleNavMenu())}
         aria-label="menu-burger"
       />
-      <nav
+      <section
         className={`${styles.navBar} ${navMenuIsOpen ? '' : styles.hideLeft}`}
       >
         <div className="bg-white border-end border-light border-1 d-flex flex-column pt-4">
@@ -36,8 +53,12 @@ export default function NavBar() {
             id="nav-list"
             className={`ps-3 text-start flex-grow-1 ${styles.navList}`}
           >
-            <li>DOCTORS</li>
-            <li>APPOINTMENTS</li>
+            <li>
+              <NavLink to="/">DOCTORS</NavLink>
+            </li>
+            <li>
+              <NavLink to="/appointments">APPOINTMENTS</NavLink>
+            </li>
           </ul>
           <ul className="d-flex gap-2 justify-content-center pb-2 mb-1 px-0">
             <li>
@@ -56,7 +77,7 @@ export default function NavBar() {
         >
           <FontAwesomeIcon icon="fa-caret-left" />
         </button>
-      </nav>
-    </>
+      </section>
+    </nav>
   );
 }
