@@ -3,8 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const initialState = {
   doctors: [],
   doctor: {},
-  loading: false,
-  error: '',
+  loading: false
 };
 
 export const fetchDoctors = createAsyncThunk('user/fetchDoctors', async () => {
@@ -37,11 +36,6 @@ const doctorSlice = createSlice({
       state.doctors = action.payload;
       state.loading = false;
       state.error = '';
-    });
-    builder.addCase(fetchDoctors.rejected, (state, action) => {
-      state.error = action.error.message;
-      state.loading = false;
-      state.doctors = [];
     });
     builder.addCase(fetchSingleDoctor.pending, (state) => {
       state.loading = true;
