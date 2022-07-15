@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const initialState = {
   doctors: [],
   doctor: {},
-  loading: false
+  loading: false,
 };
 
 export const fetchDoctors = createAsyncThunk('user/fetchDoctors', async () => {
