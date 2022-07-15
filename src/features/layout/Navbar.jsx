@@ -13,7 +13,9 @@ export default function NavBar() {
       <label
         id="menu-burger"
         htmlFor="menu-burger-button"
-        className={`position-absolute ${styles.menuBurger}`}
+        className={`position-absolute ${styles.menuBurger} ${
+          navMenuIsOpen ? styles.disappear : ''
+        }`}
       >
         <div />
         <div />

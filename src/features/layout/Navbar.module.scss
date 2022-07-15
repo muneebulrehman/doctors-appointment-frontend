@@ -29,8 +29,9 @@
 
 .menuBurger {
   top: 1.5rem;
-  left: 1.5rem;
+  left: -0.8rem;
   cursor: pointer;
+  transition: all 1s ease-in;
 
   div {
     border-bottom: 6px solid #fff;
@@ -64,6 +65,10 @@
   }
 }
 
+.disappear{
+  transform: scaleY(0);
+}
+
 @media (min-width: 576px) {
   .navBar {
     width: 19rem;
@@ -71,5 +76,9 @@
 
   .hideLeft {
     margin-left: -19rem;
+  }
+
+  .menuBurger{
+    left: 1.5rem;
   }
 }
