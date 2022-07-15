@@ -1,4 +1,8 @@
 :root {
-  --m1-v1: $primary;
-  --m1-v2: $light;
+  --doctors-primary: #{$primary};
+  --doctors-secondary: #{$light};
+}
+
+.h-2rem {
+  height: 2rem;
 }
