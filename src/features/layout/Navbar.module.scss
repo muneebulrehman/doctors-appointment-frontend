@@ -9,11 +9,13 @@
 
 .navList {
   margin-top: 15vh;
+
   li {
     font-weight: 700;
     font-size: 1.3rem;
     cursor: pointer;
     padding: 0.5rem 2.5rem 0.5rem 1rem;
+
     &:hover {
       background-color: var(--bs-primary);
       color: var(--bs-white);
@@ -29,8 +31,9 @@
   top: 1.5rem;
   left: 1.5rem;
   cursor: pointer;
+
   div {
-    border-bottom: 6px solid #ffffff;
+    border-bottom: 6px solid #fff;
     margin-bottom: 0.24rem;
     transition: all 0.5s;
     min-width: 1.5rem;
@@ -49,10 +52,13 @@
   border-radius: 0 1.8rem 1.8rem 0;
   border: 1px solid lightgrey;
   text-align: right;
+
   &:hover {
     opacity: 0.7;
   }
+
   padding-right: 1rem;
+
   svg {
     height: 1.5rem;
   }
