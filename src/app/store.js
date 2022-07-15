@@ -1,5 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-const store = configureStore();
+import doctorReducer from '../features/doctor/doctorSlice';
+
+const store = configureStore({
+  reducer: {
+    doctor: doctorReducer
+  }
+});
 
 export default store;
