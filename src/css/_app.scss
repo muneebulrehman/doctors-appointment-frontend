@@ -1,13 +1,4 @@
-#nav-list {
-  margin-top: 20vh;
-  li {
-    font-weight: 700;
-    font-size: 1.3rem;
-    cursor: pointer;
-    padding: 0.5rem 2.5rem 0.5rem 1rem;
-    &:hover {
-      background-color: $primary;
-      color: $white;
-    }
-  }
+:root {
+  --m1-v1: $primary;
+  --m1-v2: $light;
 }

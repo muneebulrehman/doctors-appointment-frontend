@@ -25,7 +25,15 @@
     "react/prop-types": 0,
     "no-shadow": "off",
     "linebreak-style": ["error", "unix"],
-    "endOfLine": 0
+    "endOfLine": 0,
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ]
   },
   "ignorePatterns": ["dist/", "build/", "tests/"]
 }
