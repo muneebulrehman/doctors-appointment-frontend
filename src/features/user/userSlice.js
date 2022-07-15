@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import getCookie from '../../util/cookies';
+import { setCookie, getCookie } from '../../util/cookies';
 
 const url = 'https://doctors-appointment-backend.herokuapp.com/api';
 
@@ -59,7 +59,7 @@ const userSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       state.user = action.payload;
       state.loading = false;
-      getCookie();
+      setCookie();
     });
     builder.addCase(login.rejected, (state, action) => {
       state.error = action.error.message;

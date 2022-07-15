@@ -4,6 +4,10 @@ const getCookie = () => {
   return cookie;
 };
 
-export default getCookie;
+const setCookie = (name) => {
+  const cookie = `user_name=${name}`;
+};
+
+export { getCookie, setCookie };
 
 // export const deleteCookie = () => {};
