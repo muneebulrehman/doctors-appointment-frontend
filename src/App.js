@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes } from 'react-router-dom';
 import './App.css';
 // import DoctorView from './features/doctor/DoctorView';
+import UserView from './features/user/UserView';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <div className="App">
         <h1>React app</h1>
         {/* <DoctorView /> */}
+        <UserView />
         <Routes />
       </div>
     </BrowserRouter>
