@@ -7,9 +7,11 @@ import { NavLink } from 'react-router-dom';
 
 import { toggleNavMenu } from './layoutSlice';
 import styles from './Navbar.module.scss';
+import api from '../../helpers/api';
+import routes from '../../routes';
 
 export default function NavBar() {
-  const { navMenuIsOpen } = useSelector((state) => state.layout);
+  const { navMenuIsOpen, lightModeIsOn } = useSelector((state) => state.layout);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,6 +27,18 @@ export default function NavBar() {
     };
   }, [navMenuIsOpen]);
 
+  const logout = async () => {
+    const res = await api.destroy(routes.AUTH);
+    if (res.success) {
+      window.location.pathname = '/';
+    }
+    console.log(res);
+  };
+
+  const test = () => fetch('/test/login');
+  // .then((res) => res.json())
+  // .then((res) => console.log(res));
+
   return (
     <nav className="z-index-1100">
       <label
@@ -32,7 +46,7 @@ export default function NavBar() {
         htmlFor="menu-burger-button"
         className={`position-absolute zindex-sticky ${styles.menuBurger} ${
           navMenuIsOpen ? styles.disappear : ''
-        }`}
+        } ${lightModeIsOn ? styles.makeChildrenDark : ''}`}
       >
         <div />
         <div />
@@ -68,6 +82,18 @@ export default function NavBar() {
             <li>
               <NavLink to="/session_create">SIGN UP</NavLink>
             </li>
+            <li>
+              <button className="btn-clean" type="submit" onClick={logout}>
+                LOGOUT
+              </button>
+            </li>
+            <button
+              type="button"
+              className="btn-clean text-danger text-center w-100"
+              onClick={test}
+            >
+              test login
+            </button>
           </ul>
           <ul className="d-flex gap-2 justify-content-center pb-2 mb-1 px-0">
             <li>

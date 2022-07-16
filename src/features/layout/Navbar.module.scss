@@ -10,7 +10,7 @@
 .navList {
   margin-top: 15vh;
 
-  li {
+  li, button  {
     font-weight: 700;
     font-size: 1.3rem;
     cursor: pointer;
@@ -18,7 +18,9 @@
 
     &:hover {
       background-color: var(--bs-primary);
-      color: var(--bs-white);
+      &, * {
+        color: var(--bs-white);
+      }
     }
   }
 }
@@ -39,6 +41,12 @@
     transition: all 0.5s;
     min-width: 1.5rem;
     border-radius: 4px;
+  }
+}
+
+.makeChildrenDark {
+  div{
+    border-bottom: 6px solid var(--bs-primary);
   }
 }
 

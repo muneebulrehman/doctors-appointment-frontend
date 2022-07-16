@@ -11,17 +11,13 @@ import {
 import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { fetchDoctors } from '../doctor/doctorSlice';
 import helpers from '../../helpers';
 import routes from '../../routes';
-// import { useGetAppointmentsQuery } from '../../services/api';
 import { setDoctorId, setDate, setPending } from './appointmentSlice';
 import styles from './AppointmentsIndex.module.scss';
 
 export default function AppointmentsIndex() {
-  // const { data } = useGetAppointmentsQuery();
   const { doctors } = useSelector((state) => state.doctor);
   const { doctorId, date, pending } = useSelector((state) => state.appointment);
 
@@ -39,7 +35,7 @@ export default function AppointmentsIndex() {
     console.log('SUBMITTING');
     dispatch(setPending(true));
     const data = { doctor_id: doctorId, date };
-    const response = await helpers.api.post(routes.NEW_APPOINTMENT, data);
+    const response = await helpers.api.post(routes.APPOINTMENT, data);
     dispatch(setPending(false));
     console.log(response);
     dispatch(setDate(null));
@@ -174,8 +170,7 @@ export default function AppointmentsIndex() {
         </div>
       </main>
       <div
-        id="appointments-index"
-        className={`${styles.backgroundOpacity} position-absolute top-0 bottom-0 start-0 end-0`}
+        className={`${styles.backgroundOpac} ${styles.backgroundImg1} position-absolute top-0 bottom-0 start-0 end-0`}
       />
     </section>
   );

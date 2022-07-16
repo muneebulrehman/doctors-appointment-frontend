@@ -1,3 +1,4 @@
 export default {
-  NEW_APPOINTMENT: '/appointments',
+  APPOINTMENT: '/appointments',
+  AUTH: '/auth',
 };
