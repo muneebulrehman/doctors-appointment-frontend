@@ -60,7 +60,7 @@ export default function AppointmentsIndex() {
         </p>
         <p className="text-secondary pb-2 mb-4">----------------------</p>
         <div className="d-flex justify-content-center">
-          <div className="row row-cols-md-3 col-11 gx-5">
+          <div className="row row-cols-md-3 col-10 gx-5">
             {data &&
               data.map((appo, idx) => {
                 if (idx >= slidePointer + 3 || idx < slidePointer) return null;
@@ -75,15 +75,26 @@ export default function AppointmentsIndex() {
                       alt="doctor"
                     />
                     <div className="d-flex flex-column justify-content-between flex-grow-1">
-                      <div>
-                        <h4>{appo.doctor.name}</h4>
+                      <div className="mb-2">
+                        <h4 className="fs-5">{appo.doctor.name}</h4>
                       </div>
                       <div>
-                        <p className="mb-1">{appo.doctor.speciality}</p>
+                        <p className="mb-1 text-secondary fw-bold">
+                          {appo.doctor.speciality}
+                        </p>
                         <p className={`text-secondary mb-1 ${styles.grayDots}`}>
                           ----------------------
                         </p>
-                        <p>{new Date(appo.date).toLocaleString()}</p>
+                        <div>
+                          {new Date(appo.date)
+                            .toLocaleString()
+                            .split(',')
+                            .map((datePart) => (
+                              <p className="mb-1" key={`date-${datePart}`}>
+                                {datePart}
+                              </p>
+                            ))}
+                        </div>
                       </div>
                     </div>
                   </div>

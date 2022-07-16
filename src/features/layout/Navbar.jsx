@@ -66,30 +66,18 @@ export default function NavBar() {
       >
         <div className="bg-white border-end border-light border-1 d-flex flex-column pt-4">
           <FontAwesomeIcon className="h-2rem" icon="fa-briefcase-medical" />
-          <ul
+          <div
             id="nav-list"
-            className={`ps-3 text-start flex-grow-1 ${styles.navList}`}
+            className={`ps-3 text-start flex-grow-1 flex-column ${styles.navList}`}
           >
-            <li>
-              <NavLink to="/">DOCTORS</NavLink>
-            </li>
-            <li>
-              <NavLink to="/appointments">APPOINTMENTS</NavLink>
-            </li>
-            <li>
-              <NavLink to="/new_appointment">BOOK NEW</NavLink>
-            </li>
-            <li>
-              <NavLink to="/session_new">LOG IN</NavLink>
-            </li>
-            <li>
-              <NavLink to="/session_create">SIGN UP</NavLink>
-            </li>
-            <li>
-              <button className="btn-clean" type="submit" onClick={logout}>
-                LOGOUT
-              </button>
-            </li>
+            <NavLink to="/">DOCTORS</NavLink>
+            <NavLink to="/appointments">APPOINTMENTS</NavLink>
+            <NavLink to="/new_appointment">BOOK NEW</NavLink>
+            <NavLink to="/session_new">LOG IN</NavLink>
+            <NavLink to="/session_create">SIGN UP</NavLink>
+            <button className="btn-clean" type="submit" onClick={logout}>
+              LOGOUT
+            </button>
             <button
               type="button"
               className="btn-clean text-danger text-center w-100"
@@ -97,7 +85,7 @@ export default function NavBar() {
             >
               test login
             </button>
-          </ul>
+          </div>
           <ul className="d-flex gap-2 justify-content-center pb-2 mb-1 px-0">
             <li>
               <FontAwesomeIcon icon="fa-brands fa-twitter" />

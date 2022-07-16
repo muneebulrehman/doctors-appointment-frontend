@@ -11,16 +11,19 @@
 .navList {
   margin-top: 15vh;
 
-  li, button  {
+  a, button  {
+    display: block;
     font-weight: 700;
     font-size: 1.3rem;
     cursor: pointer;
-    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    padding: 0.5rem 2.5rem 0.5rem 1rem !important;
+    width: 100%;
+    text-align: start;
 
     &:hover {
       background-color: var(--bs-primary);
       &, * {
-        color: var(--bs-white);
+        color: var(--bs-white) !important;
       }
     }
   }
