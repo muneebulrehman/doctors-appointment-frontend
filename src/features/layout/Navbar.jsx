@@ -14,8 +14,8 @@ export default function NavBar() {
 
   useEffect(() => {
     function navMenuClickHandler(e) {
-      const navEl = document.querySelector('nav');
-      if (navMenuIsOpen && !navEl.contains(e.target)) {
+      const menuBurgerEl = document.querySelector('#menu-burger-button');
+      if (navMenuIsOpen && !menuBurgerEl.contains(e.target)) {
         dispatch(toggleNavMenu());
       }
     }
@@ -26,11 +26,11 @@ export default function NavBar() {
   }, [navMenuIsOpen]);
 
   return (
-    <nav>
+    <nav className="z-index-1100">
       <label
         id="menu-burger"
         htmlFor="menu-burger-button"
-        className={`position-absolute ${styles.menuBurger} ${
+        className={`position-absolute zindex-sticky ${styles.menuBurger} ${
           navMenuIsOpen ? styles.disappear : ''
         }`}
       >
