@@ -5,6 +5,7 @@ import './App.css';
 import DoctorView from './features/doctor/DoctorView';
 import AppointmentShow from './features/appointment/AppointmentShow';
 import AppointmentsIndex from './features/appointment/AppointmentsIndex';
+import NewAppointment from './features/appointment/NewAppointment';
 import NavBar from './features/layout/Navbar';
 import './services/fortawesome';
 
@@ -15,6 +16,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<DoctorView />} />
+          <Route path="/new_appointment" element={<NewAppointment />} />
           <Route path="/appointments" element={<AppointmentsIndex />} />
           <Route
             path="/appointments/:appointmentId"

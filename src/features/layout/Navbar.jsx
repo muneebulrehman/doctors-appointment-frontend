@@ -59,6 +59,15 @@ export default function NavBar() {
             <li>
               <NavLink to="/appointments">APPOINTMENTS</NavLink>
             </li>
+            <li>
+              <NavLink to="/new_appointment">BOOK NEW</NavLink>
+            </li>
+            <li>
+              <NavLink to="/session_new">LOG IN</NavLink>
+            </li>
+            <li>
+              <NavLink to="/session_create">SIGN UP</NavLink>
+            </li>
           </ul>
           <ul className="d-flex gap-2 justify-content-center pb-2 mb-1 px-0">
             <li>
