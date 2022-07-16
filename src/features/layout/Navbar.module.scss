@@ -4,6 +4,8 @@
   top: 0;
   bottom: 0;
   display: flex;
+  min-height: 100vh;
+  // width: auto;
 }
 
 .navList {
@@ -76,9 +78,10 @@
   transform: scaleY(0);
 }
 
-@media (min-width: 576px) {
+@media (min-width: 767.98px) {
   .navBar {
-    width: 19rem;
+    width: auto;
+    max-width: 19rem;
   }
 
   .hideLeft {

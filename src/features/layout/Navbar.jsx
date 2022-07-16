@@ -62,7 +62,7 @@ export default function NavBar() {
       <section
         className={`${styles.navBar} ${
           navMenuIsOpen || !mobileMode ? '' : styles.hideLeft
-        } ${mobileMode ? 'position-absolute' : 'position-fixed'}`}
+        } ${mobileMode ? 'position-absolute' : 'position-sticky'}`}
       >
         <div className="bg-white border-end border-light border-1 d-flex flex-column pt-4">
           <FontAwesomeIcon className="h-2rem" icon="fa-briefcase-medical" />
