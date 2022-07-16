@@ -11,7 +11,8 @@ import api from '../../helpers/api';
 import routes from '../../routes';
 
 export default function NavBar() {
-  const { navMenuIsOpen, lightModeIsOn } = useSelector((state) => state.layout);
+  const { navMenuIsOpen, lightModeIsOn, mobileMode, backButtonVisible } =
+    useSelector((state) => state.layout);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -59,7 +60,9 @@ export default function NavBar() {
         aria-label="menu-burger"
       />
       <section
-        className={`${styles.navBar} ${navMenuIsOpen ? '' : styles.hideLeft}`}
+        className={`${styles.navBar} ${
+          navMenuIsOpen || !mobileMode ? '' : styles.hideLeft
+        } ${mobileMode ? 'position-absolute' : 'position-fixed'}`}
       >
         <div className="bg-white border-end border-light border-1 d-flex flex-column pt-4">
           <FontAwesomeIcon className="h-2rem" icon="fa-briefcase-medical" />
@@ -105,13 +108,15 @@ export default function NavBar() {
           </ul>
           <sub className="mb-5">&copy; 2022 Remote Developers</sub>
         </div>
-        <button
-          type="button"
-          className={styles.closeNavMenu}
-          onClick={() => dispatch(toggleNavMenu())}
-        >
-          <FontAwesomeIcon icon="fa-caret-left" />
-        </button>
+        {backButtonVisible && (
+          <button
+            type="button"
+            className={styles.closeNavMenu}
+            onClick={() => dispatch(toggleNavMenu())}
+          >
+            <FontAwesomeIcon icon="fa-caret-left" />
+          </button>
+        )}
       </section>
     </nav>
   );

@@ -5,6 +5,8 @@ const layoutSlice = createSlice({
   initialState: {
     navMenuIsOpen: false,
     lightModeIsOn: false,
+    mobileMode: true,
+    backButtonVisible: false,
   },
   reducers: {
     toggleNavMenu(state) {
@@ -13,8 +15,15 @@ const layoutSlice = createSlice({
     setLightMode(state, action) {
       state.lightModeIsOn = action.payload;
     },
+    setMobileMode(state, action) {
+      state.mobileMode = action.payload;
+    },
+    setBackButton(state, action) {
+      state.backButtonVisible = action.payload;
+    },
   },
 });
 
-export const { toggleNavMenu, setLightMode } = layoutSlice.actions;
+export const { toggleNavMenu, setLightMode, setMobileMode, setBackButton } =
+  layoutSlice.actions;
 export default layoutSlice.reducer;

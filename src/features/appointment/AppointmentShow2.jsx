@@ -18,7 +18,7 @@ import { useDispatch } from 'react-redux';
 // import routes from '../../routes';
 import { useGetAppointmentsQuery } from '../../services/api';
 // import { setDoctorId, setDate, setPending } from './appointmentSlice';
-import { setMobileMode } from '../layout/layoutSlice';
+import { setLightMode } from '../layout/layoutSlice';
 // import styles from './AppointmentsIndex.module.scss';
 
 export default function AppointmentsIndex() {
@@ -28,10 +28,9 @@ export default function AppointmentsIndex() {
   // const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(setLightMode(true));
-    // return () => dispatch(setLightMode(false));
-    dispatch(setMobileMode(false));
-    return () => dispatch(setMobileMode(true));
+    // dispatch(fetchDoctors());
+    dispatch(setLightMode(true));
+    return () => dispatch(setLightMode(false));
   }, []);
 
   return (
