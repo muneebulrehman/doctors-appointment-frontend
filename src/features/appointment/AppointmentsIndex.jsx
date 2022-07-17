@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { useGetAppointmentsQuery } from '../../services/api';
-import { setMobileMode, setLightMode } from '../layout/layoutSlice';
+import { setLightMode } from '../layout/layoutSlice';
 import { setSlideAmountToShow, setSlidePointer } from './appointmentSlice';
-import config from '../../config';
 import NavButton from '../layout/NavButton';
 import styles from './AppointmentsIndex.module.scss';
+import { UseListenResize } from '../../hooks';
 
 export default function AppointmentsIndex() {
   const { slidePointer, slideAmountToShow } = useSelector(
@@ -17,27 +17,10 @@ export default function AppointmentsIndex() {
   const { mobileMode } = useSelector((state) => state.layout);
   const dispatch = useDispatch();
   const { data: appointmentData, error } = useGetAppointmentsQuery();
-  console.log(appointmentData);
-  // const dispatch = useDispatch();
+
+  UseListenResize();
 
   useEffect(() => {
-    const resizeHandler = () => {
-      if (window.innerWidth >= config.mobileBreakPoint) {
-        dispatch(setMobileMode(false));
-      } else {
-        dispatch(setMobileMode(true));
-      }
-    };
-    resizeHandler();
-    window.addEventListener('resize', resizeHandler);
-    return () => {
-      window.removeEventListener('resize', resizeHandler);
-      dispatch(setMobileMode(true));
-    };
-  }, []);
-
-  useEffect(() => {
-    // dispatch(fetchDoctors());
     dispatch(setLightMode(true));
     return () => dispatch(setLightMode(false));
   }, []);
