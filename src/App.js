@@ -7,6 +7,7 @@ import AppointmentsIndex from './features/appointment/AppointmentsIndex';
 import NewAppointment from './features/appointment/NewAppointment';
 import NavBar from './features/layout/Navbar';
 import './services/fortawesome';
+import routesApp from './routesApp';
 
 function App() {
   return (
@@ -14,11 +15,20 @@ function App() {
       <div className="App d-flex bg-primary min-vh-100">
         <NavBar />
         <Routes>
-          <Route path="/doctors" element={<DoctorView />} />
-          <Route path="/doctors/:doctorId" element={<DoctorView />} />
-          <Route path="/new_appointment" element={<NewAppointment />} />
-          <Route path="/appointments" element={<AppointmentsIndex />} />
-          <Route path="/*" element={<Navigate replace to="/doctors" />} />
+          <Route path={routesApp.DOCTORS} element={<DoctorView />} />
+          <Route path={routesApp.DOCTOR} element={<DoctorView />} />
+          <Route
+            path={routesApp.NEW_APPOINTMENT}
+            element={<NewAppointment />}
+          />
+          <Route
+            path={routesApp.APPOINTMENTS}
+            element={<AppointmentsIndex />}
+          />
+          <Route
+            path="/*"
+            element={<Navigate replace to={routesApp.DOCTORS} />}
+          />
         </Routes>
       </div>
     </BrowserRouter>
