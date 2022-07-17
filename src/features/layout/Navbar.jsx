@@ -8,7 +8,8 @@ import { NavLink } from 'react-router-dom';
 import { toggleNavMenu } from './layoutSlice';
 import styles from './Navbar.module.scss';
 import api from '../../helpers/api';
-import routes from '../../routes';
+import routes from '../../routesApi';
+import routesApp from '../../routesApp';
 
 export default function NavBar() {
   const { navMenuIsOpen, lightModeIsOn, mobileMode, backButtonVisible } =
@@ -33,10 +34,10 @@ export default function NavBar() {
     if (res.success) {
       window.location.pathname = '/';
     }
-    console.log(res);
+    // console.log(res);
   };
 
-  const test = () => fetch('/test/login');
+  const test = () => fetch(routesApp.TEST_LOGIN);
   // .then((res) => res.json())
   // .then((res) => console.log(res));
 
@@ -70,11 +71,11 @@ export default function NavBar() {
             id="nav-list"
             className={`ps-3 text-start flex-grow-1 flex-column ${styles.navList}`}
           >
-            <NavLink to="/">DOCTORS</NavLink>
-            <NavLink to="/appointments">APPOINTMENTS</NavLink>
-            <NavLink to="/new_appointment">BOOK NEW</NavLink>
-            <NavLink to="/session_new">LOG IN</NavLink>
-            <NavLink to="/session_create">SIGN UP</NavLink>
+            <NavLink to={routesApp.DOCTORS}>DOCTORS</NavLink>
+            <NavLink to={routesApp.APPOINTMENTS}>APPOINTMENTS</NavLink>
+            <NavLink to={routesApp.NEW_APPOINTMENT}>BOOK NEW</NavLink>
+            <NavLink to={routesApp.NEW_SESSION}>LOG IN</NavLink>
+            <NavLink to={routesApp.CREATE_SESSION}>SIGN UP</NavLink>
             <button className="btn-clean" type="submit" onClick={logout}>
               LOGOUT
             </button>

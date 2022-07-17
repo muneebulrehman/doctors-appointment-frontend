@@ -13,7 +13,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import { fetchDoctors } from '../doctor/doctorSlice';
 import helpers from '../../helpers';
-import routes from '../../routes';
+import routes from '../../routesApi';
 import { setDoctorId, setDate, setPending } from './appointmentSlice';
 import styles from './AppointmentsIndex.module.scss';
 
