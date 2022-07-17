@@ -120,8 +120,9 @@ export default function AppointmentsIndex() {
                       maxDate={new Date().setMonth(
                         (new Date().getMonth() + 1) % 12
                       )}
-                      minDateTime={new Date()}
-                      minTime={new Date(new Date(date).setHours(8))}
+                      disableIgnoringDatePartForTimeValidation
+                      // minDate={new Date(new Date(Date.now()).setHours(10))}
+                      minTime={new Date(new Date(date).setHours(9))}
                       maxTime={new Date(new Date(date).setHours(19))}
                       renderInput={(val) => (
                         <TextField

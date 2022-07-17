@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import DoctorView from './features/doctor/DoctorView';
-import AppointmentShow from './features/appointment/AppointmentShow';
 import AppointmentsIndex from './features/appointment/AppointmentsIndex';
 import NewAppointment from './features/appointment/NewAppointment';
 import NavBar from './features/layout/Navbar';
@@ -16,12 +15,9 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<DoctorView />} />
+          <Route path="/doctors/:doctorId" element={<DoctorView />} />
           <Route path="/new_appointment" element={<NewAppointment />} />
           <Route path="/appointments" element={<AppointmentsIndex />} />
-          <Route
-            path="/appointments/:appointmentId"
-            element={<AppointmentShow />}
-          />
         </Routes>
       </div>
     </BrowserRouter>
