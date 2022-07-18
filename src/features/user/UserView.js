@@ -10,7 +10,7 @@ const UserView = () => {
   const inputHandler = (e) => {
     e.preventDefault();
     const user = {
-      name: name.current.value
+      name: name.current.value,
     };
     dispatch(login(user));
   };

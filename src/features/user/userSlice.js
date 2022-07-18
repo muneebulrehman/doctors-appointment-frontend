@@ -5,17 +5,17 @@ const url = 'https://doctors-appointment-backend.herokuapp.com/api';
 const initialState = {
   user: null,
   loading: false,
-  error: ''
+  error: '',
 };
 
 export const signUp = createAsyncThunk('user/signUp', async (user) => {
   const response = await fetch(`${url}/users`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     withCredentials: true,
-    body: JSON.stringify({ user_name: user.name, email: user.email })
+    body: JSON.stringify({ user_name: user.name, email: user.email }),
   });
   const data = await response.json();
   return data;
@@ -25,10 +25,10 @@ export const login = createAsyncThunk('user/login', async (user) => {
   const response = await fetch(`${url}/auth`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     withCredentials: true,
-    body: JSON.stringify({ user_name: user.name })
+    body: JSON.stringify({ user_name: user.name }),
   });
   const data = await response.json();
   return data;
@@ -61,7 +61,7 @@ const userSlice = createSlice({
       state.error = action.error.message;
       state.loading = false;
     });
-  }
+  },
 });
 
 export default userSlice.reducer;
