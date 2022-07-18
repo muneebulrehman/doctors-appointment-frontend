@@ -29,7 +29,6 @@
   color: rgb(100, 100, 100);
 }
 
-
 @media screen and (min-width: 768px) {
   .allDoctors-container {
     padding: 0 12rem;
@@ -69,7 +68,7 @@
 .doctorView-reserve {
   display: block;
   width: fit-content;
-  padding: .5rem;
+  padding: 0.5rem;
   background: #fff;
   border-radius: 8px;
   margin: 2rem auto 0;
