@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-
 import './App.css';
 import DoctorView from './features/doctor/DoctorView';
 import AppointmentsIndex from './features/appointment/AppointmentsIndex';
