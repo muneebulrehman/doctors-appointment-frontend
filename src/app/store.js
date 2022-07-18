@@ -6,8 +6,8 @@ import userReducer from '../features/user/userSlice';
 const store = configureStore({
   reducer: {
     doctor: doctorReducer,
-    user: userReducer,
-  },
+    user: userReducer
+  }
 });
 
 export default store;
