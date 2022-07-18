@@ -1,9 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import config from '../config';
 
-const baseUrl =
-  process.env.NODE_ENV === 'production'
-    ? 'https://doctors-appointment-backend.herokuapp.com/api'
-    : '/api';
+const baseUrl = config.url;
 
 export const api = createApi({
   reducerPath: 'backendApi',

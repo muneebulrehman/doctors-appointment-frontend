@@ -1,20 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faCaretLeft,
-  faBriefcaseMedical,
-} from '@fortawesome/free-solid-svg-icons';
-import { faTwitter, faFacebookF } from '@fortawesome/free-brands-svg-icons';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import './App.css';
 import DoctorView from './features/doctor/DoctorView';
-import AppointmentShow from './features/appointment/AppointmentShow';
 import AppointmentsIndex from './features/appointment/AppointmentsIndex';
+import NewAppointment from './features/appointment/NewAppointment';
 import NavBar from './features/layout/Navbar';
-
-library.add(faCaretLeft, faTwitter, faFacebookF, faBriefcaseMedical);
+import './services/fortawesome';
+import routesApp from './routesApp';
 
 function App() {
   return (
@@ -22,11 +15,19 @@ function App() {
       <div className="App d-flex bg-primary min-vh-100">
         <NavBar />
         <Routes>
-          <Route path="/" element={<DoctorView />} />
-          <Route path="/appointments" element={<AppointmentsIndex />} />
+          <Route path={routesApp.DOCTORS} element={<DoctorView />} />
+          <Route path={routesApp.DOCTOR} element={<DoctorView />} />
           <Route
-            path="/appointments/:appointmentId"
-            element={<AppointmentShow />}
+            path={routesApp.NEW_APPOINTMENT}
+            element={<NewAppointment />}
+          />
+          <Route
+            path={routesApp.APPOINTMENTS}
+            element={<AppointmentsIndex />}
+          />
+          <Route
+            path="/*"
+            element={<Navigate replace to={routesApp.DOCTORS} />}
           />
         </Routes>
       </div>
