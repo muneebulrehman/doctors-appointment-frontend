@@ -24,6 +24,12 @@
   border-radius: 5%;
 }
 
+.allDoctors-doctor-speciality {
+  font-weight: bold;
+  color: rgb(100, 100, 100);
+}
+
+
 @media screen and (min-width: 768px) {
   .allDoctors-container {
     padding: 0 12rem;
@@ -31,7 +37,11 @@
 
   .allDoctors-list {
     flex-direction: row;
-    gap: 5rem;
+    gap: 3rem;
     flex-wrap: wrap;
+  }
+
+  .allDoctors-each-doctor {
+    width: 18rem;
   }
 }
