@@ -24,7 +24,7 @@ const AllDoctorView = () => {
             <Link to={`/doctors/${doctor.id}`}>
               <img
                 src={doctor.photo}
-                alt="photo"
+                alt={doctor.name}
                 className="allDoctors-doctor-photo"
               />
               <h4>{doctor.name}</h4>
