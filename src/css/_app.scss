@@ -1,0 +1,88 @@
+:root {
+  --doctors-primary: #{$primary};
+  --doctors-secondary: #{$light};
+  --doctors-btn-hover: #f3f3b4;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+h1 {
+  font-size: 1rem;
+}
+
+.btn-clean {
+  border: none;
+  background: none;
+  padding: 0 !important;
+}
+
+.z-index-1000 {
+  z-index: 1000;
+}
+
+.z-index-1100 {
+  z-index: 1100;
+}
+
+.h-2rem {
+  height: 2rem;
+}
+
+.light-theme {
+  border-bottom: 6px solid red !important;
+  background-color: blue;
+
+  * {
+    border-bottom: 6px solid red !important;
+  }
+}
+
+/* MUI LocalizationProvider requires classes to be over-written.
+It doesnt accept <sx> property modification.
+*/
+
+.MuiOutlinedInput-root {
+  border-radius: 12rem !important;
+  border-color: white;
+  background-color: var(--doctors-primary);
+  // width: 16rem;
+}
+
+.MuiOutlinedInput-root-Mui-error {
+  border-color: white;
+}
+
+label.MuiInputLabel-root {
+  padding-left: 1rem;
+  color: white;
+}
+
+.MuiInputLabel-shrink {
+  margin-left: -0.6rem;
+}
+
+.MuiButtonBase-root.MuiIconButton-root {
+  margin-right: 0.1rem;
+}
+
+[data-testid="CalendarIcon"] {
+  color: white;
+  width: auto;
+  height: 1.5rem;
+}
+
+fieldset.MuiOutlinedInput-notchedOutline {
+  border-color: white;
+}
+
+// .MuiFormControl-root {
+//   padding: unset;
+//   margin: unset;
+// }
