@@ -16,7 +16,7 @@ const LoginForm = () => {
   };
   return (
     <div className="login-container">
-      <form onSubmit={inputHandler}>
+      <form onSubmit={inputHandler} className="login-form">
         <input type="text" ref={name} placeholder="User Name" required />
         <button type="submit"> Login </button>
       </form>

@@ -1,0 +1,29 @@
+.login-container {
+  margin: 3rem auto;
+}
+
+.login-form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.login-form input {
+  outline: none;
+  border: none;
+  padding: .5rem 1rem;
+  border-radius: 8px;
+}
+
+.login-form button {
+  outline: none;
+  border: none;
+  padding: .5rem 1rem;
+  border-radius: 8px;
+  background: #7b07ff;
+  color: #fff;
+  cursor: pointer;
+}
