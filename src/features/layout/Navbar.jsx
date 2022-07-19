@@ -1,19 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
-
+import { useCookies } from 'react-cookie';
 import { toggleNavMenu } from './layoutSlice';
 import styles from './Navbar.module.scss';
 import api from '../../helpers/api';
 import routes from '../../routesApi';
 import routesApp from '../../routesApp';
-import getCookie from '../../util/cookies';
 
 export default function NavBar() {
   const { navMenuIsOpen, lightModeIsOn, mobileMode, backButtonVisible } =
     useSelector((state) => state.layout);
   const dispatch = useDispatch();
+  const [cookies] = useCookies();
+  const [user, setUser] = useState('');
 
   useEffect(() => {
     function navMenuClickHandler(e) {
@@ -29,11 +30,12 @@ export default function NavBar() {
   }, [navMenuIsOpen]);
 
   useEffect(() => {
-    const user = getCookie();
-    if (user && user != null) {
-      console.log(user);
+    const user = cookies.user_name;
+    if (user && user !== 'nil') {
+      setUser(user);
+    } else {
+      setUser('');
     }
-    console.log('i fire first');
   }, []);
 
   const logout = async () => {
@@ -41,7 +43,6 @@ export default function NavBar() {
     if (res.success) {
       window.location.pathname = '/';
     }
-    // console.log(res);
   };
 
   const test = () => fetch(routesApp.TEST_LOGIN);
@@ -81,11 +82,17 @@ export default function NavBar() {
             <NavLink to={routesApp.DOCTORS}>DOCTORS</NavLink>
             <NavLink to={routesApp.APPOINTMENTS}>APPOINTMENTS</NavLink>
             <NavLink to={routesApp.NEW_APPOINTMENT}>BOOK NEW</NavLink>
-            <NavLink to={routesApp.NEW_SESSION}>LOG IN</NavLink>
-            <NavLink to={routesApp.CREATE_SESSION}>SIGN UP</NavLink>
-            <button className="btn-clean" type="submit" onClick={logout}>
-              LOGOUT
-            </button>
+            {user ? (
+              <button className="btn-clean" type="submit" onClick={logout}>
+                LOGOUT
+              </button>
+            ) : (
+              <>
+                <NavLink to={routesApp.NEW_SESSION}>LOG IN</NavLink>
+                <NavLink to={routesApp.CREATE_SESSION}>SIGN UP</NavLink>
+              </>
+            )}
+
             <button
               type="button"
               className="btn-clean text-danger text-center w-100"

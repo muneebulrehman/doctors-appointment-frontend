@@ -1,11 +1,14 @@
-import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { signUp } from './userSlice';
 import './form.css';
 
 const RegisterForm = () => {
+  const userExists = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+  const nav = useNavigate();
   const name = useRef('name');
   const email = useRef('email');
   const inputHandler = (e) => {
@@ -16,6 +19,12 @@ const RegisterForm = () => {
     };
     dispatch(signUp(user));
   };
+
+  useEffect(() => {
+    if (userExists && userExists.success) {
+      nav('/doctors');
+    }
+  }, [userExists]);
   return (
     <div className="form-container">
       <form onSubmit={inputHandler} className="main-form reg-form ">

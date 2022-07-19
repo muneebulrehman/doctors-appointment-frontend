@@ -1,10 +1,13 @@
-import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { login } from './userSlice';
 import './form.css';
 
 const LoginForm = () => {
+  const userExists = useSelector((state) => state.user.user);
+  const nav = useNavigate();
   const dispatch = useDispatch();
   const name = useRef('');
   const inputHandler = (e) => {
@@ -14,6 +17,12 @@ const LoginForm = () => {
     };
     dispatch(login(user));
   };
+  useEffect(() => {
+    if (userExists && userExists.success) {
+      nav('/doctors');
+    }
+  }, [userExists]);
+
   return (
     <div className="form-container">
       <form onSubmit={inputHandler} className="main-form login-form">

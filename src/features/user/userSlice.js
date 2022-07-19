@@ -14,7 +14,6 @@ export const signUp = createAsyncThunk('user/signUp', async (user) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    withCredentials: true,
     body: JSON.stringify({ user_name: user.name, email: user.email }),
   });
   const data = await response.json();
@@ -22,7 +21,7 @@ export const signUp = createAsyncThunk('user/signUp', async (user) => {
 });
 
 export const login = createAsyncThunk('user/login', async (user) => {
-  const response = await fetch(`http://localhost:3000/api/auth`, {
+  const response = await fetch(`${url}/auth`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
