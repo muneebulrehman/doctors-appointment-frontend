@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { NavLink } from 'react-router-dom';
 
 import { toggleNavMenu } from './layoutSlice';
@@ -10,6 +8,7 @@ import styles from './Navbar.module.scss';
 import api from '../../helpers/api';
 import routes from '../../routesApi';
 import routesApp from '../../routesApp';
+import getCookie from '../../util/cookies';
 
 export default function NavBar() {
   const { navMenuIsOpen, lightModeIsOn, mobileMode, backButtonVisible } =
@@ -28,6 +27,14 @@ export default function NavBar() {
       document.removeEventListener('click', navMenuClickHandler);
     };
   }, [navMenuIsOpen]);
+
+  useEffect(() => {
+    const user = getCookie();
+    if (user && user != null) {
+      console.log(user);
+    }
+    console.log('i fire first');
+  }, []);
 
   const logout = async () => {
     const res = await api.destroy(routes.AUTH);
