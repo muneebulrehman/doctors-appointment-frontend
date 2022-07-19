@@ -1,13 +1,7 @@
 import React from 'react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import {
-  render,
-  fireEvent,
-  waitFor,
-  screen,
-  getByText,
-} from '@testing-library/react';
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from '../App';
 import ContextProvider from './helpers/ContextProvider';
