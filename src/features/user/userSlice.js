@@ -36,18 +36,6 @@ export const login = createAsyncThunk('user/login', async (user) => {
   return data;
 });
 
-// export const logout = createAsyncThunk('user/logout', async () => {
-//   const response = await fetch(`${ur}/auth`, {
-//     method: 'DELETE',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     withCredentials: true,
-//   });
-//   const data = await response.json();
-//   return data;
-// });
-
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -75,9 +63,6 @@ const userSlice = createSlice({
       state.error = action.error.message;
       state.loading = false;
     });
-    // builder.addCase(logout.fulfilled, (state) => {
-    //   state.user = null;
-    // });
   },
 });
 
