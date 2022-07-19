@@ -41,11 +41,6 @@ const doctorSlice = createSlice({
       state.loading = false;
       state.error = '';
     });
-    builder.addCase(fetchSingleDoctor.rejected, (state, action) => {
-      state.error = action.error.message;
-      state.loading = false;
-      state.doctor = {};
-    });
   },
 });
 
