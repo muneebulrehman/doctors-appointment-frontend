@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const url = 'https://doctors-appointment-backend.herokuapp.com/api';
+// const url = 'https://doctors-appointment-backend.herokuapp.com/api';
+
+import config from '../../config';
 
 const initialState = {
   user: null,
@@ -9,7 +11,7 @@ const initialState = {
 };
 
 export const signUp = createAsyncThunk('user/signUp', async (user) => {
-  const response = await fetch(`${url}/users`, {
+  const response = await fetch(`${config.baseUrl}/users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -22,28 +24,29 @@ export const signUp = createAsyncThunk('user/signUp', async (user) => {
 });
 
 export const login = createAsyncThunk('user/login', async (user) => {
-  const response = await fetch(`http://localhost:3001/api/auth`, {
+  const response = await fetch(`${config.baseUrl}/auth`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
+    withCredentials: true,
     body: JSON.stringify({ user_name: user.name }),
   });
   const data = await response.json();
   return data;
 });
 
-export const logout = createAsyncThunk('user/logout', async () => {
-  const response = await fetch(`${url}/auth`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    withCredentials: true,
-  });
-  const data = await response.json();
-  return data;
-});
+// export const logout = createAsyncThunk('user/logout', async () => {
+//   const response = await fetch(`${ur}/auth`, {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     withCredentials: true,
+//   });
+//   const data = await response.json();
+//   return data;
+// });
 
 const userSlice = createSlice({
   name: 'user',
@@ -72,9 +75,9 @@ const userSlice = createSlice({
       state.error = action.error.message;
       state.loading = false;
     });
-    builder.addCase(logout.fulfilled, (state) => {
-      state.user = null;
-    });
+    // builder.addCase(logout.fulfilled, (state) => {
+    //   state.user = null;
+    // });
   },
 });
 
