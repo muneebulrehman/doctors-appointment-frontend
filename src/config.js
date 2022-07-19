@@ -5,4 +5,5 @@ export default {
       : '/api',
   mobileBreakPoint: 767.98,
   baseUrl: `https://doctors-appointment-backend.herokuapp.com/api`,
+  // baseUrl: '/api',
 };
