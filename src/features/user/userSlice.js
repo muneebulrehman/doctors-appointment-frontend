@@ -2,8 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import config from '../../config';
 
-// const url = 'https://doctors-appointment-backend.herokuapp.com/api';
-
 const initialState = {
   user: null,
   loading: false,
