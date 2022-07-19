@@ -23,6 +23,7 @@ const RegisterForm = () => {
   useEffect(() => {
     if (userExists && userExists.success) {
       nav('/doctors');
+      window.location.reload();
     }
   }, [userExists]);
   return (
