@@ -2,11 +2,11 @@ import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { login } from './userSlice';
+import './form.css';
 
-const UserView = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
   const name = useRef('');
-  // const email = useRef('');
   const inputHandler = (e) => {
     e.preventDefault();
     const user = {
@@ -15,14 +15,13 @@ const UserView = () => {
     dispatch(login(user));
   };
   return (
-    <div>
+    <div className="login-container">
       <form onSubmit={inputHandler}>
         <input type="text" ref={name} placeholder="User Name" required />
-        {/* <input type="email" ref={email} placeholder="Email" required /> */}
-        <button type="submit"> Sign up </button>
+        <button type="submit"> Login </button>
       </form>
     </div>
   );
 };
 
-export default UserView;
+export default LoginForm;

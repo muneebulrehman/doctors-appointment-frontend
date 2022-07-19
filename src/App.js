@@ -7,6 +7,7 @@ import NewAppointment from './features/appointment/NewAppointment';
 import NavBar from './features/layout/Navbar';
 import './services/fortawesome';
 import routesApp from './routesApp';
+import LoginForm from './features/user/LoginForm';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             path={routesApp.APPOINTMENTS}
             element={<AppointmentsIndex />}
           />
+          <Route path={routesApp.NEW_SESSION} element={<LoginForm />} />
           <Route
             path="/*"
             element={<Navigate replace to={routesApp.DOCTORS} />}

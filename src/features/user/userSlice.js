@@ -22,13 +22,25 @@ export const signUp = createAsyncThunk('user/signUp', async (user) => {
 });
 
 export const login = createAsyncThunk('user/login', async (user) => {
-  const response = await fetch(`${url}/auth`, {
+  const response = await fetch(`http://127.0.0.1:3001/api/auth`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     withCredentials: true,
     body: JSON.stringify({ user_name: user.name }),
+  });
+  const data = await response.json();
+  return data;
+});
+
+export const logout = createAsyncThunk('user/logout', async () => {
+  const response = await fetch(`${url}/auth`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    withCredentials: true,
   });
   const data = await response.json();
   return data;
@@ -60,6 +72,9 @@ const userSlice = createSlice({
     builder.addCase(login.rejected, (state, action) => {
       state.error = action.error.message;
       state.loading = false;
+    });
+    builder.addCase(logout.fulfilled, (state) => {
+      state.user = null;
     });
   },
 });
