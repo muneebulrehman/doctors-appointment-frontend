@@ -26,7 +26,7 @@ export default function AppointmentsIndex() {
   }, []);
 
   useEffect(() => {
-    if (mobileMode && slideAmountToShow !== 1) {
+    if (mobileMode) {
       dispatch(setSlideAmountToShow(1));
     } else if (slideAmountToShow !== 3) {
       dispatch(setSlideAmountToShow(3));
