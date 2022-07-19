@@ -1,13 +1,11 @@
 const getCookie = () => {
-  const { cookie } = document;
-  return cookie;
+  const cookie = document.cookie;
+  if (cookie.includes('user_name')) {
+    console.log(typeof cookie);
+    const cookies = cookie.split('=');
+    return cookies[cookies.length - 1];
+  }
+  return undefined;
 };
 
-const setCookie = (name) => {
-  const cookie = `user_name=${name}`;
-  return cookie;
-};
-
-export { getCookie, setCookie };
-
-// export const deleteCookie = () => {};
+export default getCookie;

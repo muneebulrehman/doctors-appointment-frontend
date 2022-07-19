@@ -8,6 +8,7 @@ import NavBar from './features/layout/Navbar';
 import './services/fortawesome';
 import routesApp from './routesApp';
 import LoginForm from './features/user/LoginForm';
+import RegisterForm from './features/user/RegisterForm';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             element={<AppointmentsIndex />}
           />
           <Route path={routesApp.NEW_SESSION} element={<LoginForm />} />
+          <Route path={routesApp.CREATE_SESSION} element={<RegisterForm />} />
           <Route
             path="/*"
             element={<Navigate replace to={routesApp.DOCTORS} />}

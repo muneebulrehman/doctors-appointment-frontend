@@ -1,8 +1,8 @@
-.login-container {
+.form-container {
   margin: 3rem auto;
 }
 
-.login-form {
+.main-form {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -11,14 +11,18 @@
   gap: 1rem;
 }
 
-.login-form input {
+.main-form input {
   outline: none;
   border: none;
   padding: .5rem 1rem;
   border-radius: 8px;
 }
 
-.login-form button {
+.reg-form input {
+  width: 18rem;
+}
+
+.main-form button {
   outline: none;
   border: none;
   padding: .5rem 1rem;
@@ -26,4 +30,10 @@
   background: #7b07ff;
   color: #fff;
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .reg-form input {
+    width: 22rem;
+  }
 }

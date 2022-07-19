@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { login } from './userSlice';
+import getCookie from '../../util/cookies';
 import './form.css';
 
 const LoginForm = () => {
@@ -13,10 +14,11 @@ const LoginForm = () => {
       name: name.current.value,
     };
     dispatch(login(user));
+    getCookie();
   };
   return (
-    <div className="login-container">
-      <form onSubmit={inputHandler} className="login-form">
+    <div className="form-container">
+      <form onSubmit={inputHandler} className="main-form login-form">
         <input type="text" ref={name} placeholder="User Name" required />
         <button type="submit"> Login </button>
       </form>

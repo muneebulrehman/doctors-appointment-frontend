@@ -17,8 +17,12 @@ const RegisterForm = () => {
     dispatch(signUp(user));
   };
   return (
-    <div>
-      <form onSubmit={inputHandler}></form>
+    <div className="form-container">
+      <form onSubmit={inputHandler} className="main-form reg-form ">
+        <input type="text" ref={name} placeholder="User Name" required />
+        <input type="email" ref={email} placeholder="Email" required />
+        <button type="submit"> Sign Up </button>
+      </form>
     </div>
   );
 };
