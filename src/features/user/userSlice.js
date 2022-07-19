@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const url = 'https://doctors-appointment-backend.herokuapp.com/api';
+import config from '../../config';
+
+// const url = 'https://doctors-appointment-backend.herokuapp.com/api';
 
 const initialState = {
   user: null,
@@ -9,7 +11,7 @@ const initialState = {
 };
 
 export const signUp = createAsyncThunk('user/signUp', async (user) => {
-  const response = await fetch(`${url}/users`, {
+  const response = await fetch(`${config.baseUrl}/users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -22,7 +24,7 @@ export const signUp = createAsyncThunk('user/signUp', async (user) => {
 });
 
 export const login = createAsyncThunk('user/login', async (user) => {
-  const response = await fetch(`${url}/auth`, {
+  const response = await fetch(`${config.baseUrl}/auth`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
