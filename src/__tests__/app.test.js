@@ -1,7 +1,13 @@
 import React from 'react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import {
+  render,
+  fireEvent,
+  waitFor,
+  screen,
+  getByText,
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from '../App';
 import ContextProvider from './helpers/ContextProvider';
@@ -16,8 +22,19 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-test('loads and displays greeting', async () => {
+test('Renders App and Nav menu', async () => {
   render(
+    <ContextProvider>
+      <App />
+    </ContextProvider>
+  );
+
+  expect(screen.getByRole('navigation')).toHaveTextContent('LOG IN');
+  // expect(screen.getByRole('button')).toBeDisabled();
+});
+
+test('Renders Appointments', async () => {
+  const { getByText } = render(
     <ContextProvider>
       <App />
     </ContextProvider>
@@ -27,23 +44,7 @@ test('loads and displays greeting', async () => {
 
   await waitFor(() => screen.getByRole('heading'));
 
-  expect(screen.getByRole('heading')).toHaveTextContent('APPOINTMENTS');
-  // expect(screen.getByRole('button')).toBeDisabled();
+  expect(
+    getByText('Your existing appointments are listed below')
+  ).toBeInTheDocument();
 });
-
-// test('handles server error', async () => {
-//   server.use(rest.get('/greeting', (req, res, ctx) => res(ctx.status(500))));
-
-//   render(
-//     <ContextProvider>
-//       <App url="/greeting" />
-//     </ContextProvider>
-//   );
-
-//   fireEvent.click(screen.getByText('Load Greeting'));
-
-//   await waitFor(() => screen.getByRole('alert'));
-
-//   expect(screen.getByRole('alert')).toHaveTextContent('Oops, failed to fetch!');
-//   expect(screen.getByRole('button')).not.toBeDisabled();
-// });
