@@ -22,12 +22,11 @@ export const signUp = createAsyncThunk('user/signUp', async (user) => {
 });
 
 export const login = createAsyncThunk('user/login', async (user) => {
-  const response = await fetch(`http://127.0.0.1:3001/api/auth`, {
+  const response = await fetch(`http://localhost:3000/api/auth`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    withCredentials: true,
     body: JSON.stringify({ user_name: user.name }),
   });
   const data = await response.json();
