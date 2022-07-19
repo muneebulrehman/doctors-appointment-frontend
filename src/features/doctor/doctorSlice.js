@@ -5,9 +5,10 @@ const initialState = {
   doctor: {},
   loading: false,
 };
-// https://doctors-appointment-backend.herokuapp.com
-export const fetchDoctors = createAsyncThunk('user/fetchDoctors', async () => {
-  const response = await fetch('/api/doctors');
+const baseUrl = `https://doctors-appointment-backend.herokuapp.com`;
+
+export const fetchDoctors = createAsyncThunk(`user/fetchDoctors`, async () => {
+  const response = await fetch(`${baseUrl}/api/doctors`);
   const doctors = await response.json();
   return doctors;
 });
@@ -15,7 +16,7 @@ export const fetchDoctors = createAsyncThunk('user/fetchDoctors', async () => {
 export const fetchSingleDoctor = createAsyncThunk(
   'user/fetchSingleDoctor',
   async (id) => {
-    const response = await fetch(`/api/doctors/${id}`);
+    const response = await fetch(`${baseUrl}/api/doctors/${id}`);
     const doctor = await response.json();
     return doctor;
   }
