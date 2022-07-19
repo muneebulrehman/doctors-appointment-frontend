@@ -6,7 +6,7 @@ const appointmentSlice = createSlice({
     doctorId: '',
     date: null,
     pending: false,
-    slidePointer: 0,
+    slidePointer: 1,
     slideAmountToShow: 1,
   },
   reducers: {
