@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
-// import { useCookies } from 'react-cookie';
+
 import { toggleNavMenu } from './layoutSlice';
 import styles from './Navbar.module.scss';
 import api from '../../helpers/api';
@@ -13,7 +13,6 @@ export default function NavBar() {
   const { navMenuIsOpen, lightModeIsOn, mobileMode, backButtonVisible } =
     useSelector((state) => state.layout);
   const dispatch = useDispatch();
-  // const [cookies] = useCookies();
   const [user, setUser] = useState('null');
 
   useEffect(() => {
@@ -30,12 +29,6 @@ export default function NavBar() {
   }, [navMenuIsOpen]);
 
   useEffect(() => {
-    // const user = cookies.user_name;
-    // if (user && user !== 'nil') {
-    //   setUser(user);
-    // } else {
-    //   setUser('');
-    // }
     if (localStorage.getItem('user_name')) {
       setUser(localStorage.getItem('user_name'));
     } else setUser('');
@@ -48,10 +41,6 @@ export default function NavBar() {
     }
     localStorage.removeItem('user_name');
   };
-
-  const test = () => fetch(routesApp.TEST_LOGIN);
-  // .then((res) => res.json())
-  // .then((res) => console.log(res));
 
   return (
     <nav className="z-index-1100">
@@ -96,14 +85,6 @@ export default function NavBar() {
                 <NavLink to={routesApp.CREATE_SESSION}>SIGN UP</NavLink>
               </>
             )}
-
-            <button
-              type="button"
-              className="btn-clean text-danger text-center w-100"
-              onClick={test}
-            >
-              test login
-            </button>
           </div>
           <ul className="d-flex gap-2 justify-content-center pb-2 mb-1 px-0">
             <li>
