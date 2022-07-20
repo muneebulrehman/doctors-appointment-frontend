@@ -1,14 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+import config from '../../config';
+
 const initialState = {
   doctors: [],
   doctor: {},
   loading: false,
 };
-const baseUrl = `https://doctors-appointment-backend.herokuapp.com`;
 
 export const fetchDoctors = createAsyncThunk(`user/fetchDoctors`, async () => {
-  const response = await fetch(`${baseUrl}/api/doctors`);
+  const response = await fetch(`${config.baseUrl}/doctors`);
   const doctors = await response.json();
   return doctors;
 });
@@ -16,7 +17,7 @@ export const fetchDoctors = createAsyncThunk(`user/fetchDoctors`, async () => {
 export const fetchSingleDoctor = createAsyncThunk(
   'user/fetchSingleDoctor',
   async (id) => {
-    const response = await fetch(`${baseUrl}/api/doctors/${id}`);
+    const response = await fetch(`${config.baseUrl}/doctors/${id}`);
     const doctor = await response.json();
     return doctor;
   }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 import { toggleNavMenu } from './layoutSlice';
 import styles from './Navbar.module.scss';
 import api from '../../helpers/api';
@@ -13,8 +13,8 @@ export default function NavBar() {
   const { navMenuIsOpen, lightModeIsOn, mobileMode, backButtonVisible } =
     useSelector((state) => state.layout);
   const dispatch = useDispatch();
-  const [cookies] = useCookies();
-  const [user, setUser] = useState('');
+  // const [cookies] = useCookies();
+  const [user, setUser] = useState('null');
 
   useEffect(() => {
     function navMenuClickHandler(e) {
@@ -30,12 +30,15 @@ export default function NavBar() {
   }, [navMenuIsOpen]);
 
   useEffect(() => {
-    const user = cookies.user_name;
-    if (user && user !== 'nil') {
-      setUser(user);
-    } else {
-      setUser('');
-    }
+    // const user = cookies.user_name;
+    // if (user && user !== 'nil') {
+    //   setUser(user);
+    // } else {
+    //   setUser('');
+    // }
+    if (localStorage.getItem('user_name')) {
+      setUser(localStorage.getItem('user_name'));
+    } else setUser('');
   }, []);
 
   const logout = async () => {
@@ -43,6 +46,7 @@ export default function NavBar() {
     if (res.success) {
       window.location.pathname = '/';
     }
+    localStorage.removeItem('user_name');
   };
 
   const test = () => fetch(routesApp.TEST_LOGIN);
