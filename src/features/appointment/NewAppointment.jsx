@@ -27,12 +27,10 @@ export default function AppointmentsIndex() {
     dispatch(fetchDoctors());
   }, []);
 
-  function errorHandler(e, v) {}
-
   const formSubmitHandler = async () => {
-    console.log('SUBMITTING');
     dispatch(setPending(true));
-    const response = await helpers.api.post(routes.APPOINTMENT, data);
+    const data = { doctor_id: doctorId, date };
+    // const response = await helpers.api.post(routes.APPOINTMENT, data);
     dispatch(setPending(false));
     dispatch(setDate(null));
     dispatch(setDoctorId(''));
