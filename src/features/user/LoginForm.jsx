@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 
 import { login } from './userSlice';
 import './form.css';
@@ -11,7 +10,6 @@ const LoginForm = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const name = useRef('');
-  const [, setCookie] = useCookies('');
   const inputHandler = (e) => {
     e.preventDefault();
     const user = {
@@ -23,7 +21,6 @@ const LoginForm = () => {
     if (userExists && userExists.success) {
       nav('/doctors');
       localStorage.setItem('user_name', userExists.user[0].user_name);
-      setCookie('user_name', userExists.user[0].user_name, { path: '/' });
     }
   }, [userExists]);
 

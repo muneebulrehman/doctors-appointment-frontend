@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 
 import { signUp } from './userSlice';
 import './form.css';
@@ -12,7 +11,6 @@ const RegisterForm = () => {
   const nav = useNavigate();
   const name = useRef('name');
   const email = useRef('email');
-  const [, setCookie] = useCookies('');
   const inputHandler = (e) => {
     e.preventDefault();
     const user = {
@@ -25,7 +23,6 @@ const RegisterForm = () => {
   useEffect(() => {
     if (userExists && userExists.success) {
       nav('/doctors');
-      setCookie('user_name', userExists.user[0].user_name, { path: '/' });
     }
   }, [userExists]);
   return (
