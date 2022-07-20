@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { NavLink } from 'react-router-dom';
-
+import { NavLink, useNavigate } from 'react-router-dom';
 import { toggleNavMenu } from './layoutSlice';
 import styles from './Navbar.module.scss';
 import api from '../../helpers/api';
 import routes from '../../routesApi';
 import routesApp from '../../routesApp';
+import config from '../../config';
 
 export default function NavBar() {
   const { navMenuIsOpen, lightModeIsOn, mobileMode, backButtonVisible } =
     useSelector((state) => state.layout);
   const dispatch = useDispatch();
   const [user, setUser] = useState('null');
+  const nav = useNavigate();
 
   useEffect(() => {
     function navMenuClickHandler(e) {
@@ -31,15 +32,21 @@ export default function NavBar() {
   useEffect(() => {
     if (localStorage.getItem('user_name')) {
       setUser(localStorage.getItem('user_name'));
+      console.log(user);
     } else setUser('');
-  }, []);
+  }, [user]);
 
   const logout = async () => {
-    const res = await api.destroy(routes.AUTH);
+    // const res = await api.destroy(routes.AUTH);
+    let res = await fetch(`${config.baseUrl}/auth`, {
+      method: 'DELETE',
+    });
+    res = await res.json();
     if (res.success) {
-      window.location.pathname = '/';
+      nav('/');
+      setUser('');
+      localStorage.removeItem('user_name');
     }
-    localStorage.removeItem('user_name');
   };
 
   return (
