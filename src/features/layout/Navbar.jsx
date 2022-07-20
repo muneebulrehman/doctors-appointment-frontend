@@ -4,10 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toggleNavMenu } from './layoutSlice';
 import styles from './Navbar.module.scss';
-import api from '../../helpers/api';
-import routes from '../../routesApi';
+// import api from '../../helpers/api';
+// import routes from '../../routesApi';
 import routesApp from '../../routesApp';
 import config from '../../config';
+import { userLogout } from '../user/userSlice';
 
 export default function NavBar() {
   const { navMenuIsOpen, lightModeIsOn, mobileMode, backButtonVisible } =
@@ -15,6 +16,7 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const [user, setUser] = useState('null');
   const nav = useNavigate();
+  const userLoggedIn = useSelector((state) => state.user.user);
 
   useEffect(() => {
     function navMenuClickHandler(e) {
@@ -30,9 +32,12 @@ export default function NavBar() {
   }, [navMenuIsOpen]);
 
   useEffect(() => {
+    setUser(userLoggedIn);
+  }, [userLoggedIn]);
+
+  useEffect(() => {
     if (localStorage.getItem('user_name')) {
       setUser(localStorage.getItem('user_name'));
-      console.log(user);
     } else setUser('');
   }, [user]);
 
@@ -46,7 +51,9 @@ export default function NavBar() {
       nav('/');
       setUser('');
       localStorage.removeItem('user_name');
+      dispatch(userLogout());
     }
+    dispatch(userLogout());
   };
 
   return (

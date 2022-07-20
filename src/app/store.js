@@ -5,7 +5,6 @@ import doctorReducer from '../features/doctor/doctorSlice';
 import userReducer from '../features/user/userSlice';
 import layoutReducer from '../features/layout/layoutSlice';
 import appointmentReducer from '../features/appointment/appointmentSlice';
-import loginLogoutReducer from '../features/loginlogoutSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,7 +13,6 @@ const store = configureStore({
     layout: layoutReducer,
     appointment: appointmentReducer,
     [api.reducerPath]: api.reducer,
-    loginLogout: loginLogoutReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),
