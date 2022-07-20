@@ -17,7 +17,7 @@ export default function NavBar() {
   const [user, setUser] = useState('null');
   const nav = useNavigate();
   const userLoggedIn = useSelector((state) => state.user.user);
-  const [cookies, setCookie] = useCookies('');
+  const [, setCookie] = useCookies('');
 
   useEffect(() => {
     function navMenuClickHandler(e) {

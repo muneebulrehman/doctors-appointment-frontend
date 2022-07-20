@@ -12,7 +12,7 @@ const RegisterForm = () => {
   const nav = useNavigate();
   const name = useRef('name');
   const email = useRef('email');
-  const [cookies, setCookie] = useCookies('');
+  const [, setCookie] = useCookies('');
   const inputHandler = (e) => {
     e.preventDefault();
     const user = {

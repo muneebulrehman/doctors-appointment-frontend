@@ -11,7 +11,7 @@ const LoginForm = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const name = useRef('');
-  const [cookies, setCookie] = useCookies('');
+  const [, setCookie] = useCookies('');
   const inputHandler = (e) => {
     e.preventDefault();
     const user = {
