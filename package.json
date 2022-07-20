@@ -3,6 +3,9 @@
   "proxy": "http://localhost:3001/",
   "version": "0.1.0",
   "private": true,
+  "overrides": {
+    "autoprefixer": "10.4.5"
+  },
   "jest": {
     "testMatch": [
       "**/__tests__/**/*.test.+(ts|tsx|js)",
