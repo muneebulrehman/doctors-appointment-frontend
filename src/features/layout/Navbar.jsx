@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 
 import { toggleNavMenu } from './layoutSlice';
 import styles from './Navbar.module.scss';
 import routesApp from '../../routesApp';
 import config from '../../config';
 import { userLogout } from '../user/userSlice';
+import routes from '../../routesApi';
 
 export default function NavBar() {
   const { navMenuIsOpen, lightModeIsOn, mobileMode, backButtonVisible } =
@@ -17,7 +17,6 @@ export default function NavBar() {
   const [user, setUser] = useState('null');
   const nav = useNavigate();
   const userLoggedIn = useSelector((state) => state.user.user);
-  const [, setCookie] = useCookies('');
 
   useEffect(() => {
     function navMenuClickHandler(e) {
@@ -43,8 +42,7 @@ export default function NavBar() {
   }, [user]);
 
   const logout = async () => {
-    // const res = await api.destroy(routes.AUTH);
-    let res = await fetch(`${config.baseUrl}/auth`, {
+    let res = await fetch(`${config.url}${routes.AUTH}`, {
       method: 'DELETE',
     });
     res = await res.json();
@@ -55,7 +53,6 @@ export default function NavBar() {
       dispatch(userLogout());
     }
     dispatch(userLogout());
-    setCookie('user_name', 'nil', { path: '/' });
   };
 
   return (
