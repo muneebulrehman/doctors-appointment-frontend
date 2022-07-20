@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+
 import { toggleNavMenu } from './layoutSlice';
 import styles from './Navbar.module.scss';
-// import api from '../../helpers/api';
-// import routes from '../../routesApi';
 import routesApp from '../../routesApp';
 import config from '../../config';
 import { userLogout } from '../user/userSlice';
@@ -17,6 +17,7 @@ export default function NavBar() {
   const [user, setUser] = useState('null');
   const nav = useNavigate();
   const userLoggedIn = useSelector((state) => state.user.user);
+  const [cookies, setCookie] = useCookies('');
 
   useEffect(() => {
     function navMenuClickHandler(e) {
@@ -54,6 +55,7 @@ export default function NavBar() {
       dispatch(userLogout());
     }
     dispatch(userLogout());
+    setCookie('user_name', 'nil', { path: '/' });
   };
 
   return (
