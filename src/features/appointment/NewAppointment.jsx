@@ -30,7 +30,7 @@ export default function AppointmentsIndex() {
   const formSubmitHandler = async () => {
     dispatch(setPending(true));
     const data = { doctor_id: doctorId, date };
-    // const response = await helpers.api.post(routes.APPOINTMENT, data);
+    await helpers.api.post(routes.APPOINTMENT, data);
     dispatch(setPending(false));
     dispatch(setDate(null));
     dispatch(setDoctorId(''));
@@ -109,7 +109,7 @@ export default function AppointmentsIndex() {
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DateTimePicker
                       disablePast
-                      onError={(e, v) => errorHandler(e, v)}
+                      // onError={(e, v) => errorHandler(e, v)}
                       minutesStep={30}
                       maxDate={new Date().setMonth(
                         (new Date().getMonth() + 1) % 12
