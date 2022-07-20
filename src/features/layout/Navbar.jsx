@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 import { toggleNavMenu } from './layoutSlice';
 import styles from './Navbar.module.scss';
-import api from '../../helpers/api';
-import routes from '../../routesApi';
 import routesApp from '../../routesApp';
+import config from '../../config';
+import { userLogout } from '../user/userSlice';
 
 export default function NavBar() {
   const { navMenuIsOpen, lightModeIsOn, mobileMode, backButtonVisible } =
     useSelector((state) => state.layout);
   const dispatch = useDispatch();
   const [user, setUser] = useState('null');
+  const nav = useNavigate();
+  const userLoggedIn = useSelector((state) => state.user.user);
+  const [, setCookie] = useCookies('');
 
   useEffect(() => {
     function navMenuClickHandler(e) {
@@ -29,17 +33,29 @@ export default function NavBar() {
   }, [navMenuIsOpen]);
 
   useEffect(() => {
+    setUser(userLoggedIn);
+  }, [userLoggedIn]);
+
+  useEffect(() => {
     if (localStorage.getItem('user_name')) {
       setUser(localStorage.getItem('user_name'));
     } else setUser('');
-  }, []);
+  }, [user]);
 
   const logout = async () => {
-    const res = await api.destroy(routes.AUTH);
+    // const res = await api.destroy(routes.AUTH);
+    let res = await fetch(`${config.baseUrl}/auth`, {
+      method: 'DELETE',
+    });
+    res = await res.json();
     if (res.success) {
-      window.location.pathname = '/';
+      nav('/');
+      setUser('');
+      localStorage.removeItem('user_name');
+      dispatch(userLogout());
     }
-    localStorage.removeItem('user_name');
+    dispatch(userLogout());
+    setCookie('user_name', 'nil', { path: '/' });
   };
 
   return (
