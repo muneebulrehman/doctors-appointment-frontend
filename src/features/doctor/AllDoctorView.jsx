@@ -7,6 +7,7 @@ import './doctors.css';
 
 const AllDoctorView = () => {
   const doctors = useSelector((state) => state.doctor.doctors);
+  const loading = useSelector((state) => state.doctor.loading);
 
   const dispatch = useDispatch();
 
