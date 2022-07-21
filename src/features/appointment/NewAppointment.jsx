@@ -143,7 +143,7 @@ export default function AppointmentsIndex() {
           <div className="text-center mt-4">
             <Button
               disabled={pending}
-              onClick={useCallback(formSubmitHandler, [])}
+              onClick={useCallback(formSubmitHandler, [doctorId, date])}
               id="btn-appointment-submit"
               variant="contained"
               className="col-12 col-md-6"
