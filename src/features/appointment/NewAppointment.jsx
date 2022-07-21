@@ -10,15 +10,16 @@ import {
 } from '@mui/material';
 import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
 import { fetchDoctors } from '../doctor/doctorSlice';
-import helpers from '../../helpers';
-import routes from '../../routesApi';
 import { setDoctorId, setDate, setPending } from './appointmentSlice';
+import { useCreateAppointmentMutation } from '../../services/api';
 import styles from './AppointmentsIndex.module.scss';
 
-export default function AppointmentsIndex() {
+export default function NewAppointment() {
   const { doctors } = useSelector((state) => state.doctor);
   const { doctorId, date, pending } = useSelector((state) => state.appointment);
+  const [createAppointment] = useCreateAppointmentMutation();
 
   const dispatch = useDispatch();
 
@@ -26,10 +27,15 @@ export default function AppointmentsIndex() {
     dispatch(fetchDoctors());
   }, []);
 
+  // function errorHandler(e, v) {
+  //   console.log(e, ' -- ', v);
+  // }
+
   const formSubmitHandler = async () => {
     dispatch(setPending(true));
     const data = { doctor_id: doctorId, date };
-    await helpers.api.post(routes.APPOINTMENT, data);
+    createAppointment(data);
+    // await helpers.api.post(routes.APPOINTMENT, data);
     dispatch(setPending(false));
     dispatch(setDate(null));
     dispatch(setDoctorId(''));
@@ -108,6 +114,7 @@ export default function AppointmentsIndex() {
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DateTimePicker
                       disablePast
+                      // onError={(e, v) => errorHandler(e, v)}
                       minutesStep={30}
                       maxDate={new Date().setMonth(
                         (new Date().getMonth() + 1) % 12
@@ -143,7 +150,7 @@ export default function AppointmentsIndex() {
           <div className="text-center mt-4">
             <Button
               disabled={pending}
-              onClick={useCallback(formSubmitHandler, [])}
+              onClick={useCallback(formSubmitHandler, [doctorId, date])}
               id="btn-appointment-submit"
               variant="contained"
               className="col-12 col-md-6"
