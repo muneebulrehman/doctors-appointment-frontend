@@ -4,14 +4,21 @@ import { useParams, Link } from 'react-router-dom';
 
 import { fetchSingleDoctor } from './doctorSlice';
 import './doctors.css';
+import Loader from '../loader/Loader';
 
 const DoctorView = () => {
   const doctor = useSelector((state) => state.doctor.doctor);
+  const loading = useSelector((state) => state.doctor.loading);
   const dispatch = useDispatch();
   const { doctorId } = useParams();
   useEffect(() => {
     dispatch(fetchSingleDoctor(doctorId));
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <div className="doctorView-container">
       <div className="doctorView-image-container">

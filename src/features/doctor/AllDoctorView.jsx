@@ -4,15 +4,21 @@ import { Link } from 'react-router-dom';
 
 import { fetchDoctors } from './doctorSlice';
 import './doctors.css';
+import Loader from '../loader/Loader';
 
 const AllDoctorView = () => {
   const doctors = useSelector((state) => state.doctor.doctors);
+  const loading = useSelector((state) => state.doctor.loading);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchDoctors());
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="allDoctors-container">
