@@ -44,7 +44,7 @@ export default function NavBar() {
   const logout = async () => {
     let res = await fetch(`${config.url}${routes.AUTH}`, {
       method: 'DELETE',
-      credentials: 'include',
+      // credentials: 'include',
     });
     res = await res.json();
     if (res.success) {
