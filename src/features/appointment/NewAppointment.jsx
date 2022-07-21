@@ -36,10 +36,7 @@ export default function NewAppointment() {
         .filter((c) => c.startsWith('user_name'));
       [, c2] = c1[0].split('=');
       c2 = c2 !== 'nil' && c2 !== null && c2;
-      console.log(c2);
-      // c2 = c2[1];
     } catch (e) {
-      console.log(e);
       // dispatch(fetchDoctors());
     }
     setUser(c2);
