@@ -38,25 +38,21 @@ const AllDoctorView = () => {
           dragConstraints={{ right: 0, left: -width }}
           className="inner-carousel"
         >
-          {doctors.map((doctor) =>  (
-              <motion.div
-                key={doctor.id}
-                className="allDoctors-each-doctor item"
-              >
-                <Link to={`/doctors/${doctor.id}`}>
-                  <img
-                    src={doctor.photo}
-                    alt={doctor.name}
-                    className="allDoctors-doctor-photo"
-                  />
-                  <h4>{doctor.name}</h4>
-                  <p className="allDoctors-doctor-speciality">
-                    {doctor.speciality}
-                  </p>
-                </Link>
-              </motion.div>
-            )
-          )}
+          {doctors.map((doctor) => (
+            <motion.div key={doctor.id} className="allDoctors-each-doctor item">
+              <Link to={`/doctors/${doctor.id}`}>
+                <img
+                  src={doctor.photo}
+                  alt={doctor.name}
+                  className="allDoctors-doctor-photo"
+                />
+                <h4>{doctor.name}</h4>
+                <p className="allDoctors-doctor-speciality">
+                  {doctor.speciality}
+                </p>
+              </Link>
+            </motion.div>
+          ))}
         </motion.div>
       </motion.div>
     </div>
