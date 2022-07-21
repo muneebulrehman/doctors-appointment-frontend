@@ -10,7 +10,9 @@ const initialState = {
 };
 
 export const fetchDoctors = createAsyncThunk(`user/fetchDoctors`, async () => {
-  const response = await fetch(`${config.url}${routes.DOCTOR}`);
+  const response = await fetch(`${config.url}${routes.DOCTOR}`, {
+    mode: 'no-cors',
+  });
   const doctors = await response.json();
   return doctors;
 });
@@ -18,7 +20,9 @@ export const fetchDoctors = createAsyncThunk(`user/fetchDoctors`, async () => {
 export const fetchSingleDoctor = createAsyncThunk(
   'user/fetchSingleDoctor',
   async (id) => {
-    const response = await fetch(`${config.url}${routes.DOCTOR_ID}${id}`);
+    const response = await fetch(`${config.url}${routes.DOCTOR_ID}${id}`, {
+      mode: 'no-cors',
+    });
     const doctor = await response.json();
     return doctor;
   }

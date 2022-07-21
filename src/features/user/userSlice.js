@@ -15,6 +15,7 @@ export const signUp = createAsyncThunk('user/signUp', async (user) => {
     headers: {
       'Content-Type': 'application/json',
     },
+    mode: 'no-cors',
     credentials: 'include',
     body: JSON.stringify({ user_name: user.name, email: user.email }),
   });
@@ -28,6 +29,7 @@ export const login = createAsyncThunk('user/login', async (user) => {
     headers: {
       'Content-Type': 'application/json',
     },
+    mode: 'no-cors',
     credentials: 'include',
     body: JSON.stringify({ user_name: user.name }),
   });
