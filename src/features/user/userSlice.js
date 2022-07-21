@@ -14,8 +14,8 @@ export const signUp = createAsyncThunk('user/signUp', async (user) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Credentials': true,
     },
+    'Access-Control-Allow-Credentials': true,
     withCredentials: true,
     credentials: 'include',
     body: JSON.stringify({ user_name: user.name, email: user.email }),
@@ -29,8 +29,8 @@ export const login = createAsyncThunk('user/login', async (user) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Credentials': true,
     },
+    'Access-Control-Allow-Credentials': true,
     credentials: 'include',
     body: JSON.stringify({ user_name: user.name }),
   });
