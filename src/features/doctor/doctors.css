@@ -1,5 +1,6 @@
 .allDoctors-container {
   margin: 3rem auto;
+  overflow: hidden;
 }
 
 .allDoctors-heading {
@@ -29,6 +30,18 @@
   color: rgb(100, 100, 100);
 }
 
+.carousel {
+  cursor: grab;
+  overflow: hidden;
+  padding: 2rem 0;
+}
+
+.inner-carousel {
+  display: flex;
+  gap: 4rem;
+  padding: 5rem 0;
+}
+
 @media screen and (min-width: 768px) {
   .allDoctors-container {
     padding: 0 12rem;
@@ -41,7 +54,13 @@
   }
 
   .allDoctors-each-doctor {
-    width: 18rem;
+    width: 30rem;
+  }
+
+  .allDoctors-doctor-photo {
+    width: 250px;
+    height: 250px;
+    border-radius: 5%;
   }
 }
 
