@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import config from '../../config';
+import routes from '../../routesApi';
 
 const initialState = {
   user: null,
@@ -9,7 +10,7 @@ const initialState = {
 };
 
 export const signUp = createAsyncThunk('user/signUp', async (user) => {
-  const response = await fetch(`${config.baseUrl}/users`, {
+  const response = await fetch(`${config.url}${routes.USER}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -22,7 +23,7 @@ export const signUp = createAsyncThunk('user/signUp', async (user) => {
 });
 
 export const login = createAsyncThunk('user/login', async (user) => {
-  const response = await fetch(`${config.baseUrl}/auth`, {
+  const response = await fetch(`${config.url}${routes.AUTH}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

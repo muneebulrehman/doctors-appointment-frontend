@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import config from '../../config';
+import routes from '../../routesApi';
 
 const initialState = {
   doctors: [],
@@ -9,7 +10,7 @@ const initialState = {
 };
 
 export const fetchDoctors = createAsyncThunk(`user/fetchDoctors`, async () => {
-  const response = await fetch(`${config.baseUrl}/doctors`);
+  const response = await fetch(`${config.url}${routes.DOCTOR}`);
   const doctors = await response.json();
   return doctors;
 });
@@ -17,7 +18,7 @@ export const fetchDoctors = createAsyncThunk(`user/fetchDoctors`, async () => {
 export const fetchSingleDoctor = createAsyncThunk(
   'user/fetchSingleDoctor',
   async (id) => {
-    const response = await fetch(`${config.baseUrl}/doctors/${id}`);
+    const response = await fetch(`${config.url}${routes.DOCTOR_ID}${id}`);
     const doctor = await response.json();
     return doctor;
   }
