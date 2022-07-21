@@ -16,6 +16,7 @@ export const signUp = createAsyncThunk('user/signUp', async (user) => {
       'Content-Type': 'application/json',
     },
     withCredentials: true,
+    credentials: 'include',
     body: JSON.stringify({ user_name: user.name, email: user.email }),
   });
   const data = await response.json();
@@ -29,6 +30,7 @@ export const login = createAsyncThunk('user/login', async (user) => {
       'Content-Type': 'application/json',
     },
     withCredentials: true,
+    credentials: 'include',
     body: JSON.stringify({ user_name: user.name }),
   });
   const data = await response.json();
