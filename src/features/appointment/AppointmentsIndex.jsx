@@ -39,8 +39,13 @@ export default function AppointmentsIndex() {
   };
 
   const nextSlide = () => {
-    const nextPointer = Math.min(appointmentData.length - 3, slidePointer + 1);
-    dispatch(setSlidePointer(nextPointer));
+    if (!error) {
+      const nextPointer = Math.min(
+        appointmentData.length - slideAmountToShow,
+        slidePointer + 1
+      );
+      dispatch(setSlidePointer(nextPointer));
+    }
   };
 
   return (
@@ -54,8 +59,8 @@ export default function AppointmentsIndex() {
         <p className="text-secondary pb-2 mb-4">----------------------</p>
         <div className="d-flex justify-content-center">
           <div className="row row-cols-md-3 col-10 gx-5">
-            {error && error.appointmentData && (
-              <p className="w-100 text-danger">{error.appointmentData.error}</p>
+            {error && error.data && (
+              <p className="w-100 text-danger">{error.data.error}</p>
             )}
             {appointmentData &&
               appointmentData.map((appo, idx) => {
