@@ -49,6 +49,7 @@ const userSlice = createSlice({
       state.user = action.payload;
       state.loading = false;
       localStorage.setItem('user_name', action.payload.user.user_name);
+      localStorage.setItem('user_id', action.payload.user.id);
     });
     builder.addCase(signUp.rejected, (state, action) => {
       state.error = action.error.message;

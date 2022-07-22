@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -14,9 +14,15 @@ export default function AppointmentsIndex() {
   const { slidePointer, slideAmountToShow } = useSelector(
     (state) => state.appointment
   );
+  const [userId, setUserId] = useState('');
   const { mobileMode } = useSelector((state) => state.layout);
   const dispatch = useDispatch();
-  const { data: appointmentData, error } = useGetAppointmentsQuery();
+  useEffect(() => {
+    if (localStorage.getItem('user_id')) {
+      setUserId(+localStorage.getItem('user_id'));
+    }
+  }, []);
+  const { data: appointmentData, error } = useGetAppointmentsQuery(userId);
 
   UseListenResize();
 
@@ -39,8 +45,13 @@ export default function AppointmentsIndex() {
   };
 
   const nextSlide = () => {
-    const nextPointer = Math.min(appointmentData.length - 3, slidePointer + 1);
-    dispatch(setSlidePointer(nextPointer));
+    if (!error) {
+      const nextPointer = Math.min(
+        appointmentData.length - slideAmountToShow,
+        slidePointer + 1
+      );
+      dispatch(setSlidePointer(nextPointer));
+    }
   };
 
   return (
@@ -54,8 +65,8 @@ export default function AppointmentsIndex() {
         <p className="text-secondary pb-2 mb-4">----------------------</p>
         <div className="d-flex justify-content-center">
           <div className="row row-cols-md-3 col-10 gx-5">
-            {error && error.appointmentData && (
-              <p className="w-100 text-danger">{error.appointmentData.error}</p>
+            {error && error.data && (
+              <p className="w-100 text-danger">{error.data.error}</p>
             )}
             {appointmentData &&
               appointmentData.map((appo, idx) => {
