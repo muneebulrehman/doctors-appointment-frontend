@@ -6,7 +6,7 @@ Visit the [Backend repo](https://github.com/muneebulrehman/doctors-appointment-b
 
 ### Preview
 
-![Preview image](./snapshot.png)
+![Preview image](./spapshot.png)
 
 ### Live version
 
