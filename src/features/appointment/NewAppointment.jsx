@@ -21,6 +21,7 @@ export default function NewAppointment() {
   const { doctorId, date, pending } = useSelector((state) => state.appointment);
   const [createAppointment] = useCreateAppointmentMutation();
   const [user, setUser] = useState(undefined);
+  const [userId, setUserId] = useState('');
 
   const dispatch = useDispatch();
 
@@ -29,28 +30,26 @@ export default function NewAppointment() {
   }, []);
 
   useEffect(() => {
+    if (localStorage.getItem('user_id')) {
+      setUserId(+localStorage.getItem('user_id'));
+    }
+  }, []);
+
+  useEffect(() => {
     let c2;
     try {
-      const c1 = document.cookie
-        .split(';')
-        .filter((c) => c.startsWith('user_name'));
-      [, c2] = c1[0].split('=');
-      c2 = c2 !== 'nil' && c2 !== null && c2;
+      const c1 = localStorage.getItem('user_name');
+      if (c1) c2 = c1;
     } catch (e) {
-      // dispatch(fetchDoctors());
+      // console.log(e)
     }
     setUser(c2);
   }, []);
 
-  // function errorHandler(e, v) {
-  //   console.log(e, ' -- ', v);
-  // }
-
   const formSubmitHandler = async () => {
     dispatch(setPending(true));
-    const data = { doctor_id: doctorId, date };
+    const data = { doctor_id: doctorId, date, user_id: userId };
     createAppointment(data);
-    // await helpers.api.post(routes.APPOINTMENT, data);
     dispatch(setPending(false));
     dispatch(setDate(null));
     dispatch(setDoctorId(''));
