@@ -10,7 +10,9 @@ export const api = createApi({
   tagTypes: ['Appointment'],
   endpoints: (build) => ({
     getAppointments: build.query({
-      query: () => routesApi.APPOINTMENT,
+      query: (id) => ({
+        url: `${routesApi.APPOINTMENT}?user_id=${id}`,
+      }),
       providesTags: ['Appointment'],
     }),
     getAppointment: build.query({

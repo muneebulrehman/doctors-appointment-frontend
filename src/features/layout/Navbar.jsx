@@ -51,6 +51,7 @@ export default function NavBar() {
       nav('/');
       setUser('');
       localStorage.removeItem('user_name');
+      localStorage.removeItem('user_id');
       dispatch(userLogout());
     }
     dispatch(userLogout());
