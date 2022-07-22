@@ -40,7 +40,9 @@ export default function NewAppointment() {
     try {
       const c1 = localStorage.getItem('user_name');
       if (c1) c2 = c1;
-    } catch (e) {}
+    } catch (e) {
+      // console.log(e)
+    }
     setUser(c2);
   }, []);
 
