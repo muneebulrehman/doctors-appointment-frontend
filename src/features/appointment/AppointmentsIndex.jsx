@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -14,9 +14,15 @@ export default function AppointmentsIndex() {
   const { slidePointer, slideAmountToShow } = useSelector(
     (state) => state.appointment
   );
+  const [userId, setUserId] = useState('');
   const { mobileMode } = useSelector((state) => state.layout);
   const dispatch = useDispatch();
-  const { data: appointmentData, error } = useGetAppointmentsQuery();
+  useEffect(() => {
+    if (localStorage.getItem('user_id')) {
+      setUserId(+localStorage.getItem('user_id'));
+    }
+  }, []);
+  const { data: appointmentData, error } = useGetAppointmentsQuery(userId);
 
   UseListenResize();
 
